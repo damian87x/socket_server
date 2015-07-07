@@ -1,0 +1,22 @@
+{
+  "name": "test-chat-app",
+  "private": true,
+  "version": "0.0.0",
+  "engines": {
+    "node": ">=0.10.3 <0.12"
+  },
+  "description": "Test chat app",
+  "dependencies": {
+    "express": "^4",
+    "body-parser": "~1.0.0",
+    "morgan": "~1.1",
+    "faye": "~1.0.1",
+    "bootstrap": "~3.3.5",
+    "jquery": "~2.1.4",
+    "jade": ">= 0.0.1"
+  },
+  "devDependencies": {},
+  "repository": "",
+  "author": "",
+  "license": "Proprietary"
+}
