@@ -1,0 +1,41 @@
+extends layout
+block head
+    style.
+        #messages {
+            height: 300px;
+            width: 300px;
+            overflow: hidden;
+            border: #ccc solid 1px;
+        }
+
+        section {
+            margin-left: 20px;
+        }
+    script(src='/faye/client.js')
+block content
+    h1 Chat Client #{id}
+    section
+        #messages
+        textarea#chat(rows='2', cols='35')
+        input#fire(type='button', value='Chat')
+        script.
+            console.log("#{host}");
+            var $chat = $('#chat');
+            $('#fire').on('click', null, function () {
+                var url = "#{host}" + 'message';
+                var message = {message: 'Client 1: ' + $chat.val()};
+                var dataType = 'json';
+                $.ajax({
+                    type: 'POST',
+                    url: url,
+                    data: message,
+                    dataType: dataType,
+                });
+                $chat.val('');
+            });
+            var client = new Faye.Client('/faye', {
+                timeout: 20
+            });
+            client.subscribe('/channel', function (message) {
+                $('#messages').append('<p>' + message.text + '</p>');
+            });
