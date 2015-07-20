@@ -39,7 +39,7 @@ app.get('/', routes.index);
 app.get('/client/:id', routes.client);
 app.post('/message',  function(req, res){
     bayeux.getClient().publish('/channel', {text: req.body.message});
-    res.send(200);
+    res.sendStatus(200);
 });
 
 
