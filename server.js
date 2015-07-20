@@ -13,6 +13,7 @@ var app = express();
 var server = http.createServer(app);
 
 
+
 // Configuration
 
 app.set('view engine', 'jade');
@@ -21,17 +22,6 @@ app.set('view engine', 'jade');
 app.use(morgan());
 app.use(bodyParser());
 app.use(express.static(__dirname + '/public'));
-
-
-
-
-// Routes
-
-app.get('/', routes.index);
-app.get('/client/:id', routes.client);
-
-
-//app.get('/client/:id', routes.client);
 
 
 // Set up chat
@@ -43,10 +33,18 @@ var bayeux = new faye.NodeAdapter({
 
 bayeux.attach(server);
 
-app.post('/message', function (req, res) {
+// Routes
+
+app.get('/', routes.index);
+app.get('/client/:id', routes.client);
+app.post('/message',  function(req, res){
     bayeux.getClient().publish('/channel', {text: req.body.message});
     res.send(200);
 });
+
+
+
+//app.get('/client/:id', routes.client);
 
 
 // Server

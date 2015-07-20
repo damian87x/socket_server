@@ -22,14 +22,16 @@ block content
             console.log("#{host}");
             var $chat = $('#chat');
             $('#fire').on('click', null, function () {
-                var url = "#{host}" + 'message';
-                var message = {message: 'Client 1: ' + $chat.val()};
+                var url = 'http://localhost:8800/message';
+                var message = JSON.stringify({message: 'Client #{id}:' + $chat.val()});
                 var dataType = 'json';
+                var contentType = 'application/json; charset=utf-8';
                 $.ajax({
                     type: 'POST',
                     url: url,
                     data: message,
-                    dataType: dataType,
+                    contentType: contentType,
+                    dataType: dataType
                 });
                 $chat.val('');
             });
