@@ -13,7 +13,6 @@ var app = express();
 var server = http.createServer(app);
 
 
-
 // Configuration
 
 app.set('view engine', 'jade');

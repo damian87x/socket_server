@@ -22,7 +22,7 @@ block content
             console.log("#{host}");
             var $chat = $('#chat');
             $('#fire').on('click', null, function () {
-                var url = "http://#{host}/message";
+                var url = "http://node-socket.ringley.co.uk//message";
                 var message = JSON.stringify({message: 'Client #{id}:' + $chat.val()});
                 var dataType = 'json';
                 var contentType = 'application/json; charset=utf-8';
